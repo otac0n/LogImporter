@@ -32,6 +32,7 @@ namespace LogImporter
         {
             using (var connection = new SqlConnection(Settings.Default.WebLogs))
             {
+                connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
                     ImportFiles(csvFiles, transaction);
