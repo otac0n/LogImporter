@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
+using LogImporter.Properties;
 
 namespace LogImporter
 {
@@ -11,6 +13,7 @@ namespace LogImporter
         static void Main(string[] args)
         {
             var files = DiscoverFiles();
+            ImportFiles(files);
         }
 
         /// <summary>
@@ -19,6 +22,55 @@ namespace LogImporter
         private static IEnumerable<string> DiscoverFiles()
         {
             return Directory.EnumerateFiles("*.csv").Select(f => Path.GetFileName(f));
+        }
+
+        /// <summary>
+        /// Imports an enumerable list of files into staging, and merges them with the current data.
+        /// </summary>
+        private static void ImportFiles(IEnumerable<string> csvFiles)
+        {
+            using (var connection = new SqlConnection(Settings.Default.WebLogs))
+            {
+                using (var transaction = connection.BeginTransaction())
+                {
+                    ImportFiles(csvFiles, transaction);
+                    transaction.Commit();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Imports an enumerable list of files into staging, and merges them with the current data.
+        /// </summary>
+        /// <remarks>
+        /// All operations against the database are performed in the given transaction.
+        /// </remarks>
+        private static void ImportFiles(IEnumerable<string> csvFiles, SqlTransaction transaction)
+        {
+            InitializeStagingTable(transaction);
+
+            foreach (var csvFile in csvFiles)
+            {
+                ImportFile(csvFile, transaction);
+            }
+
+            // TODO: Merge the staging table into the main table.
+        }
+
+        /// <summary>
+        /// Creates the staging table.
+        /// </summary>
+        private static void InitializeStagingTable(SqlTransaction transaction)
+        {
+            // TODO: Execute the create-table statement for the staging table.
+        }
+
+        /// <summary>
+        /// Imports a single file into staging.
+        /// </summary>
+        private static void ImportFile(string csvFile, SqlTransaction transaction)
+        {
+            // TODO: Import the file into staging.
         }
     }
 }
