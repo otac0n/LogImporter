@@ -22,7 +22,7 @@ namespace LogImporter
         /// </summary>
         private static IEnumerable<string> DiscoverFiles()
         {
-            return Directory.EnumerateFiles("*.csv").Select(f => Path.GetFileName(f));
+            return Directory.EnumerateFiles(".", "*.csv").Select(f => Path.GetFileName(f));
         }
 
         /// <summary>
