@@ -98,9 +98,27 @@ namespace LogImporter
 
                     using (var reader = command.ExecuteReader())
                     {
-                        // TODO: Stream the reader rows into the staging table, using the SqlBulkImport class.
+                        BulkImport(reader, transaction);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Streams data in from the data reader, and pushes it out the transaction using the SqlBulkCopy API.
+        /// </summary>
+        private static void BulkImport(IDataReader reader, SqlTransaction transaction)
+        {
+            using (var importer = new SqlBulkCopy(transaction.Connection, SqlBulkCopyOptions.Default, transaction))
+            {
+                for (int field = 0; field < reader.FieldCount; field++)
+                {
+                    var name = reader.GetName(field);
+                    importer.ColumnMappings.Add(name, name);
+                }
+
+                importer.DestinationTableName = "#w3clog_staging";
+                importer.WriteToServer(reader);
             }
         }
     }
