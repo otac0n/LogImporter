@@ -67,7 +67,7 @@ namespace LogImporter.Properties {
         ///    [LogFilename] varchar(255) NOT NULL,
         ///    [LogRow] int NOT NULL,
         ///    [date] date NULL,
-        ///    [time] time(0) NULL,
+        ///    [time] datetime NULL,
         ///    [c-ip] varchar(50) NULL,
         ///    [cs-username] varchar(255) NULL,
         ///    [s-sitename] varchar(255) NULL,
@@ -76,7 +76,7 @@ namespace LogImporter.Properties {
         ///    [s-port] varchar(255) NULL,
         ///    [cs-method] varchar(255) NULL,
         ///    [cs-uri-stem] varchar(2048) NULL,
-        ///    [cs- [rest of string was truncated]&quot;;.
+        ///    [cs [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CreateStagingTable {
             get {

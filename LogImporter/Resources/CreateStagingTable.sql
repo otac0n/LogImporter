@@ -4,7 +4,7 @@
     [LogFilename] varchar(255) NOT NULL,
     [LogRow] int NOT NULL,
     [date] date NULL,
-    [time] time(0) NULL,
+    [time] datetime NULL,
     [c-ip] varchar(50) NULL,
     [cs-username] varchar(255) NULL,
     [s-sitename] varchar(255) NULL,
