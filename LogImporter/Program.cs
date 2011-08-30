@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Odbc;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -82,7 +83,16 @@ namespace LogImporter
         /// </summary>
         private static void ImportFile(string csvFile, SqlTransaction transaction)
         {
-            // TODO: Import the file into staging.
+            var statement = string.Format("select * from {0}", csvFile);
+
+            using (var inConnection = new OdbcConnection(Settings.Default.ImportDriver))
+            {
+                var inCommand = new OdbcCommand(statement);
+                using (var reader = inCommand.ExecuteReader())
+                {
+                    // TODO: Stream the reader rows into the staging table, using the SqlBulkImport class.
+                }
+            }
         }
     }
 }
