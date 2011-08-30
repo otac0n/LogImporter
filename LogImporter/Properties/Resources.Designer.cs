@@ -83,5 +83,37 @@ namespace LogImporter.Properties {
                 return ResourceManager.GetString("CreateStagingTable", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE
+        ///    s
+        ///FROM
+        ///    [#w3clog_staging] s
+        ///INNER JOIN
+        ///    dbo.[w3clog] p
+        ///  ON
+        ///    s.[LogFilename] = p.[LogFilename]
+        ///  AND
+        ///    s.[LogRow] = p.[LogRow]
+        ///
+        ///DELETE FROM
+        ///    [#w3clog_staging]
+        ///WHERE
+        ///    ROW_NUMBER() OVER (ORDER BY [RowId] PARTITION BY [LogFilename], [LogRow]) &gt; 1
+        ///
+        ///INSERT INTO
+        ///    [w3clog]
+        ///    (
+        ///        [LogFilename], [LogRow], [date],
+        ///        [time], [c-ip], [cs-username],
+        ///        [s-sitename], [s-computername], [s-ip],
+        ///        [s-port], [cs-method], [cs-uri-stem],
+        ///        [cs [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MergeFromStaging {
+            get {
+                return ResourceManager.GetString("MergeFromStaging", resourceCulture);
+            }
+        }
     }
 }

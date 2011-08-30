@@ -57,7 +57,7 @@ namespace LogImporter
                 ImportFile(csvFile, transaction);
             }
 
-            // TODO: Merge the staging table into the main table.
+            ExecuteStatement(transaction, Resources.MergeFromStaging);
         }
 
         /// <summary>
