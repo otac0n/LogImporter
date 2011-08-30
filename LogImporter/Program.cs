@@ -62,7 +62,19 @@ namespace LogImporter
         /// </summary>
         private static void InitializeStagingTable(SqlTransaction transaction)
         {
-            // TODO: Execute the create-table statement for the staging table.
+            ExecuteStatement(transaction, Resources.CreateStagingTable);
+        }
+
+        /// <summary>
+        /// Executes a SQL statement against a transaction.
+        /// </summary>
+        private static void ExecuteStatement(SqlTransaction transaction, string sql)
+        {
+            using (var command = transaction.Connection.CreateCommand())
+            {
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+            }
         }
 
         /// <summary>
