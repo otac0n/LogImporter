@@ -72,9 +72,10 @@ namespace LogImporter
         /// </summary>
         private static void ExecuteStatement(SqlTransaction transaction, string sql)
         {
-            using (var command = transaction.Connection.CreateCommand())
+            using (var command = new SqlCommand(sql))
             {
-                command.CommandText = sql;
+                command.Connection = transaction.Connection;
+                command.Transaction = transaction;
                 command.ExecuteNonQuery();
             }
         }
