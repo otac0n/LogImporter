@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using LogImporter.Properties;
+using System.Data;
 
 namespace LogImporter
 {
@@ -87,12 +88,18 @@ namespace LogImporter
         {
             var statement = string.Format("select * from {0}", csvFile);
 
-            using (var inConnection = new OdbcConnection(Settings.Default.ImportDriver))
+            using (var connection = new OdbcConnection(Settings.Default.ImportDriver))
             {
-                var inCommand = new OdbcCommand(statement);
-                using (var reader = inCommand.ExecuteReader())
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
                 {
-                    // TODO: Stream the reader rows into the staging table, using the SqlBulkImport class.
+                    command.CommandText = statement;
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        // TODO: Stream the reader rows into the staging table, using the SqlBulkImport class.
+                    }
                 }
             }
         }
