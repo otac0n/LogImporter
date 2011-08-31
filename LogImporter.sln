@@ -6,6 +6,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A88A12DA-9262-48E8-A1FC-AC30923D2AC7}"
 	ProjectSection(SolutionItems) = preProject
 		ParseToday.cmd = ParseToday.cmd
+		Setup.sql = Setup.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queries", "Queries", "{59AC221A-C9F8-4E3F-9543-B37E7A3EFF81}"
