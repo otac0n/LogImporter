@@ -8,6 +8,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ParseToday.cmd = ParseToday.cmd
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queries", "Queries", "{59AC221A-C9F8-4E3F-9543-B37E7A3EFF81}"
+	ProjectSection(SolutionItems) = preProject
+		All Bots.sql = All Bots.sql
+		Bandwidth by IP and User Agent.sql = Bandwidth by IP and User Agent.sql
+		Daily Bandwidth.sql = Daily Bandwidth.sql
+		Errors by Hour.sql = Errors by Hour.sql
+		Expensive URLs.sql = Expensive URLs.sql
+		Hourly Load Stats.sql = Hourly Load Stats.sql
+		Most Hit URLs.sql = Most Hit URLs.sql
+		URLs With Most Errors Recently.sql = URLs With Most Errors Recently.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
