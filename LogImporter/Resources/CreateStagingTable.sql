@@ -8,7 +8,7 @@
     [c-ip] varchar(50) NULL,
     [cs-username] varchar(255) NULL,
     [s-sitename] varchar(255) NULL,
-    [s-computername] varchar(255) NOT NULL,
+    [s-computername] varchar(255) NULL,
     [s-ip] varchar(50) NULL,
     [s-port] varchar(255) NULL,
     [cs-method] varchar(255) NULL,
