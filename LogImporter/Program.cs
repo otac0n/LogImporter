@@ -86,7 +86,7 @@ namespace LogImporter
         /// </summary>
         private static void ImportFile(string csvFile, SqlTransaction transaction)
         {
-            var statement = string.Format("select * from {0}", csvFile);
+            var statement = string.Format("select * from \"{0}\"", csvFile);
 
             using (var connection = new OdbcConnection(Settings.Default.ImportDriver))
             {
