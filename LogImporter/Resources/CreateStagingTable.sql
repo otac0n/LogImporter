@@ -20,7 +20,7 @@
     [sc-bytes] int NULL,
     [cs-bytes] int NULL,
     [time-taken] bigint NULL,
-    [cs-version] int NULL,
+    [cs-version] varchar(10) NULL,
     [cs-host] varchar(255) NULL,
     [cs(User-Agent)] varchar(1000) NULL,
     [cs(Cookie)] varchar(max) NULL,
