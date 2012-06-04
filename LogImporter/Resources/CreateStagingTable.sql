@@ -2,7 +2,7 @@
 (
     [RowId] bigint IDENTITY(1,1) NOT NULL PRIMARY KEY,
     [LogFilename] varchar(255) NOT NULL,
-    [LogRow] int NOT NULL,
+    [RowNumber] int NOT NULL,
     [date] date NULL,
     [time] datetime NULL,
     [c-ip] varchar(50) NULL,

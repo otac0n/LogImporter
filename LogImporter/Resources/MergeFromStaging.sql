@@ -7,7 +7,7 @@ INNER JOIN
   ON
     s.[LogFilename] = p.[LogFilename]
   AND
-    s.[LogRow] = p.[LogRow]
+    s.[RowNumber] = p.[LogRow]
 
 DELETE FROM
     [#w3clog_staging]
@@ -20,7 +20,7 @@ WHERE
           (
             SELECT
                 RowId,
-                ROW_NUMBER() OVER (PARTITION BY [LogFilename], [LogRow] ORDER BY [RowId]) [Instance]
+                ROW_NUMBER() OVER (PARTITION BY [LogFilename], [RowNumber] ORDER BY [RowId]) [Instance]
             FROM
                 [#w3clog_staging]
           ) instances
@@ -44,7 +44,7 @@ INSERT INTO
         [s-active-procs], [s-stopped-procs]
     )
 SELECT
-    [LogFilename], [LogRow], [date],
+    [LogFilename], [RowNumber], [date],
     [time], [c-ip], [cs-username],
     [s-sitename], [s-computername], [s-ip],
     [s-port], [cs-method], [cs-uri-stem],
